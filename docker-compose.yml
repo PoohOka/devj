@@ -1,0 +1,15 @@
+# Compose file 3.7 compatible with Docker 18.06.0+
+version: '3.7'
+services:
+  backend:
+    image: devj:${TAG}
+    restart: unless-stopped
+    ports:
+      - 80:80
+    build:
+      context: .
+      args:
+        BACKEND_HOST: ${BACKEND_HOST}
+        BACKEND_LOGO: ${BACKEND_LOGO}
+        BACKEND_USER_UNLOCK: ${BACKEND_USER_UNLOCK}
+        BACKEND_USER_REFRESH: ${BACKEND_USER_REFRESH}
