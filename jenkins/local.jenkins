@@ -2,12 +2,6 @@ pipeline {
     agent any
 
     stages {
-        stage('Checkout Scm') {
-            steps {
-                // git(url: 'git@github.com:PoohOka/devj.git', credentialsId: 'deploy', branch: 'master')
-                echo 'NO checkout'
-            }
-        }
         stage('Debug') {
             steps {
                 echo 'Debugging...'
