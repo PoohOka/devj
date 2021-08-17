@@ -1,0 +1,38 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Debug') {
+            steps {
+                echo 'Debugging...'
+                sh '''
+                  pwd
+                  whoami
+                  ls -l
+                  docker --version
+                  docker-compose --version
+                  docker ps -a
+                  docker images
+                '''
+            }
+        }
+        stage('Cleanup') {
+            steps {
+                sh 'docker-cleanup'
+            }
+        }
+        stage('Build') {
+            steps {
+                sh 'bash build.sh env/prod1.env prod1'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Deploying...'
+                sh '''
+                  docker images
+                '''
+            }
+        }
+    }
+}
